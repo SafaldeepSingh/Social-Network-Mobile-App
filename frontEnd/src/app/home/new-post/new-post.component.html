@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>New Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list lines="none" class="pt-3" >
+      <ion-item>
+        <img class="avatar-photo" [src]="https(userData.profile_picture)" [alt]="userData.first_name"/>
+        <ion-label  class="card-title ion-margin " [innerText]="userData.first_name+' '+userData.last_name"></ion-label>
+          <ion-chip class="upload__chip" color="primary" slot="end" (click)="openMediaOptions()">
+            <ion-icon name="photos" ></ion-icon>
+            <ion-label>Upload</ion-label>
+          </ion-chip>
+      </ion-item>
+      <ion-item>
+        <ion-textarea rows="6" [placeholder]="contentPlaceholder" name="content" [(ngModel)]="postContent"></ion-textarea>
+      </ion-item>
+      <ion-row *ngFor="let item of selectedImage, let i = index">
+          <ion-col class="ion-text-center">
+            <ion-img class="postAttachemnts" [src]="https(item)" alt="problem "></ion-img>
+            <ion-icon class="close__icon" name="close" (click)="removeImg(i)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      <ion-row *ngFor="let item of selectedVideo, let i = index">
+        <ion-col class="ion-text-center">
+          <video controls [src]="https(item)"></video>
+          <ion-icon class="close__icon" name="close" (click)="removeImg(i)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col class="ion-text-center p-0">
+      <ion-button class="m-0 w-100" (click)="addPost()">Post</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

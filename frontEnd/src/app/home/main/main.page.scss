@@ -1,0 +1,204 @@
+.likeActive{
+  color: #64c9b5!important;
+}
+.active-item {
+  border-left: 0.5rem solid #2f364a;
+}
+.notification__btn {
+  position: relative;
+  overflow: visible!important;
+}
+.notification__badge {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  border-radius: 100%;
+  height: 1.1rem;
+  width: 1.1rem;
+  font-size: 0.75rem;
+}
+
+.butn2 {
+  background-color: white;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.90rem;
+  margin-inline-start: 1rem;
+  margin-bottom: 0.5rem;
+  color: #2f364a;
+  outline: none;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+.butn {
+  border: 0.1rem solid #64c9b5;
+  border-radius: 0.2rem;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  text-align: -webkit-center;
+  background-color: #ffffff;
+  color: #64c9b5 !important;
+  outline: none;
+  height: 1.25rem;
+  width: 4rem;
+  margin-top: -0.25rem;
+  font-size: 0.75rem;
+}
+.butn1 {
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  padding-right: 0;
+  background-color: #ffffff;
+  -webkit-appearance: button;
+  margin-left: 0px;
+  outline: none;
+  margin-right: 0.5rem;
+}
+.cardcontent {
+  padding-top: 0;
+  padding-right: 1rem;
+  font-size: 0.90rem;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #2f364a;
+}
+.card-title {
+  font-family: "Avenir Lt Std 55 Roman", sans-serif;
+  color: #2f364a;
+}
+.body {
+  background-color: #f9f9f9;
+}
+.cardchange {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.2rem;
+  background-color: #ffffff;
+  box-shadow: -0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.22) !important;
+  font-family: "Avenir LT Std 55 Roman", sans-serif;
+  color: #2f364a;
+}
+.likes {
+  font-family: "Avenir LT Std 35 Light", sans-serif;
+  font-size: 0.90rem !important;
+}
+.time-ago {
+  font-size: 0.65rem;
+  font-family: "Avenir LT Std 35 Light", sans-serif;
+  float: right;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+.btu {
+  font-size: 1.5rem;
+  background-color: #ffffff;
+  color: #0d695e;
+  outline: none;
+  height: 100%;
+}
+.search {
+  margin-left: -0.5rem;
+  outline: none;
+  height: 3rem;
+  font-size: 1rem;
+  border: none;
+}
+img {
+  //height: 2.6rem !important;
+  //width: 2.6rem !important;
+}
+
+div.item-inner {
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: -0.5rem !important;
+}
+
+.header-content {
+  padding: 0 !important;
+  margin-top: 0.25rem;
+  margin-right: -0.5rem;
+  margin-left: -0.1rem;
+  color: #2f364a;
+  font-family: "Avenir LT Std 55 Roman", sans-serif;
+}
+
+.avatar-photo {
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.img-like {
+  border-radius: 50%;
+  height: 2rem !important;
+  width: 2rem !important;
+  margin-top: 0.2rem;
+  border: 0.1rem solid white;
+  object-fit: cover;
+}
+
+// classes for multiple post images
+.p11{
+  width: 100%;
+}
+.p12,.p22{
+  width: 100%;
+  height: 48vw;
+}
+.p13{
+  width: 100%;
+  height: 54vw;
+}
+.p23, .p33{
+  width:50%;
+  height: 24vw;
+}
+.p14{
+  width: 100%;
+  height: 54vw;
+}
+.p24,.p34,.p44{
+  width:33.33%;
+  height: 24vw;
+}
+.p15,.p25{
+  width: 50%;
+  height: 36vw;
+}
+.p35,.p45,.p55{
+  width: 33.33%;
+  height: 24vw;
+}
+.moreImages__txt{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+}
+
+.black-layer{
+  filter: brightness(0.75);
+}

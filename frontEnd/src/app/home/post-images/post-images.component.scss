@@ -1,0 +1,56 @@
+.avatar-photo {
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cardchange {
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0;
+  background-color: #ffffff;
+  box-shadow: -0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.22) !important;
+  font-family: "Avenir LT Std 55 Roman", sans-serif;
+  color: #2f364a;
+}
+.header-content {
+  padding: 0 !important;
+  margin-top: 0.25rem;
+  margin-right: -0.5rem;
+  margin-left: -0.1rem;
+  color: #2f364a;
+  font-family: "Avenir LT Std 55 Roman", sans-serif;
+}
+.card-title {
+  font-family: "Avenir Lt Std 55 Roman", sans-serif;
+  color: #2f364a;
+}
+.time-ago {
+  font-size: 0.65rem;
+  font-family: "Avenir LT Std 35 Light", sans-serif;
+  float: right;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+.butn2 {
+  background-color: white;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.90rem;
+  margin-inline-start: 1rem;
+  margin-bottom: 0.5rem;
+  color: #2f364a;
+  outline: none;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+.likeActive{
+  color: #64c9b5!important;
+}

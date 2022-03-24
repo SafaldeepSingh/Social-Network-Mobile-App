@@ -1,0 +1,28 @@
+<ion-content>
+  <ion-list lines="none " *ngIf="followings">
+    <ion-grid class="main">
+      <ion-row class="like-row" *ngFor="let content of followings"  >
+        <ion-col size="2" (click)="getUserProfile(content.user, content.profile_picture, content.first_name+' '+content.last_name)" >
+          <ion-avatar class="avatar userImg">
+            <img class="" [src]="profileImg(content.profile_picture)" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col class="" style="padding-top: 2%" size="7" (click)="getUserProfile(content.user, content.profile_picture, content.first_name+' '+content.last_name)">
+          <ion-label class="username__span" >{{content.first_name+' '+content.last_name|titlecase}}</ion-label>
+          <ion-label class="likeTime">{{timeSince(content.created_date)}}</ion-label>
+        </ion-col>
+        <ion-col class="items-v-center" size="3">
+          <button *ngIf="content.user!=userData.id" id="followButton{{content.user}}" class="follow__btn card-title {{content.followStatus?'followActive':''}}" (click)="followUser(content.user, 'followButton'+content.user)">
+            {{content.followStatus?'Following':'Follow'}}
+          </button>
+        </ion-col>
+        <hr style="background-color: #f3f3f3; width:95%" />
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-row>
+    <ion-col class="noFollowingsMsg">
+      <ion-text *ngIf="!followings.length">No Followings Yet</ion-text>
+    </ion-col>
+  </ion-row>
+</ion-content>

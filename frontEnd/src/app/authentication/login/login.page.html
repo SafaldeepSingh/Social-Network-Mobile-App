@@ -1,0 +1,76 @@
+<ion-content>
+  <div class="div-main">
+    <ion-label class="label-header">Log In</ion-label>
+    <p class="sub-p">
+      Please Log in to your Account to Continue with Sorrow Flush
+    </p>
+    <form class="form" [formGroup]="LoginForm">
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row style="margin-top:3px">
+            <ion-col size="2">
+              <ion-icon name="person" class="loginIcon"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-input type="email" placeholder="Enter E-mail ID" formControlName="email" class="inpt">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row style="margin-top:3px">
+            <ion-col size="2">
+<!--              <ion-img class="icon-img" src="assets/icon/pswd-icon.png"></ion-img>-->
+              <ion-icon name="lock" class="loginIcon"></ion-icon>
+            </ion-col>
+            <ion-col size="8">
+              <ion-input #pwd type="password" placeholder="Password " formControlName="password" id="password" class="inpt">
+              </ion-input>
+            </ion-col>
+            <ion-col size="2">
+              <ion-img (click)="toggle(pwd)" id="eye" class="icon-img" src="assets/icon/eye-close.png">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <p class="condition-p">Forgot Password?</p>
+      <button fill="solid" class="main-btn" (click)="login()">
+        Log In
+      </button>
+    </form>
+    <table class="table-account">
+      <tr>
+        <td class="tr-account">
+          Don't Have Account ?
+          <span class="span-account" routerLink="/registration">Register Here</span
+          >
+        </td>
+      </tr>
+    </table>
+    <table class="table-or">
+      <tbody>
+      <tr>
+        <td class="td-or1"><hr class="hr-or" style="margin-right:10px" /></td>
+        <td class="td-or2">OR</td>
+        <td class="td-or1"><hr class="hr-or" style="margin-left:10px" /></td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table-social">
+      <tbody>
+      <tr>
+        <td width="49%" (click)="fbLogin()">
+          <img class="imh" src="assets/image/fb-icon.png">
+        </td>
+        <td width="2%"></td>
+        <td width="49%" (click)="googleLogin()">
+          <img class="imh" src="assets/image/google-icon.png">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

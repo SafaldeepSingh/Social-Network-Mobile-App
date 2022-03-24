@@ -1,0 +1,260 @@
+<ion-card #head class="cardchange">
+  <ion-row>
+    <ion-col size="2">
+      <ion-menu-button class=" btu">
+        <ion-icon name="menu"></ion-icon>
+      </ion-menu-button>
+    </ion-col>
+    <ion-col size="7">
+      <ion-input  placeholder="Search happiness,sorrow" class="search" name="searchFilter" [(ngModel)]="searchFilter"></ion-input>
+    </ion-col>
+    <ion-col size="3">
+      <button class="btu">
+        <ion-icon name="mail"> </ion-icon>
+      </button>
+      <button class="btu notification__btn" (click)="openNotifications()">
+        <ion-icon name="notifications" >
+        </ion-icon>
+        <ion-badge id="notification_count" color="danger" class="notification__badge" [innerText]="unReadNotificationsCount"></ion-badge>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div *ngFor="let content of contents |filter: searchFilter, let i = index">
+      <ion-card  class="cardchange ">
+        <ion-card-header class="header-content ">
+          <ion-list lines="none " style="padding-bottom :0; padding-top: 0 ">
+            <ion-item>
+              <img class="avatar-photo" [src]="https(content.userData.profile_picture)" />
+              <ion-label  class="card-title ion-margin ">{{ content.userData.first_name+' '+content.userData.last_name}}</ion-label>
+              <button style="margin-top:6px " class="butn1 " (click)="postSettings($event)">
+                <ion-icon name="more"></ion-icon>
+              </button>
+            </ion-item>
+            <hr style="    background-color: #cde2de;
+                      width: 88%;
+                      margin-right: 6%;
+                   " *ngIf="content.share_post_id == -1"/>
+          </ion-list>
+        </ion-card-header>
+        <ion-card-content style="padding-left:18px" class="cardcontent" *ngIf="content.share_post_id==-1">
+          <b>{{ content.post_title }}</b><br/>
+          {{ content.post_content }}
+          <div *ngIf="checkAttachment(content.post_id)">
+            <div *ngFor="let img_url of content.attachments; index as i" style="position: relative"
+                 class="d-inline-block p-1 o-fit-cover {{getClass(content.attachments.length, i)}}"
+                 (click)="viewAllImages(content)">
+              <div class="moreImages__txt" *ngIf="i>=4 && content.attachments.length>5">
+                +{{content.attachments.length - 4}}
+              </div>
+              <img class="o-fit-cover h-100 w-100 {{content.attachments.length>5 && i===4?'black-layer':''}}"
+                   [src]="https(img_url.attachment)" >
+            </div>
+          </div>
+          <ion-row style="margin-top:6px;">
+            <ion-col size="1" class="p-0"  *ngFor="let like of likes[content.post_id]">
+              <img class="img-like"  [src]="https(like.profile_picture)" *ngIf="like.user != userData.id" [alt]="like.first_name"/>
+            </ion-col>
+            <ion-col style="margin-top:3px">
+              <span class="likes " (click)="likeModal(content.post_id)"> {{content.like_count}} Likes</span>
+              <span class="likes " (click)="reactModal(content.post_id)">
+                        &nbsp;&nbsp;{{ content.comment_count }} Reactions
+                      </span>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        <ion-card-content class="py-0 mb-2" *ngIf="content.share_post_id !=-1" [innerText]="content.post_content"></ion-card-content>
+        <ion-card  class="cardchange mt-0" *ngIf="content.share_post_id != -1">
+              <ion-card-header class="header-content ">
+                  <ion-list lines="none " style="padding-bottom :0; padding-top: 0 ">
+                      <ion-item>
+                          <img class="avatar-photo" [src]="content.sharePost.userData.profile_picture" />
+                          <ion-label  class="card-title ion-margin ">{{ content.sharePost.userData.first_name+' '+content.sharePost.userData.last_name}}</ion-label>
+                      </ion-item>
+                      <hr style="    background-color: #cde2de;
+                      width: 88%;
+                      margin-right: 6%;
+                   "/>
+                  </ion-list>
+              </ion-card-header>
+              <ion-card-content style="padding-left:18px" class="cardcontent">
+                  <b>{{ content.sharePost.post_title }}</b><br/>
+                  {{ content.sharePost.post_content }}
+                 <div *ngIf="checkAttachment(content.sharePost.post_id)">
+                    <div *ngFor="let img_url of content.sharePost.attachments; index as i" style="position: relative"
+                         class="d-inline-block p-1 o-fit-cover {{getClass(content.sharePost.attachments.length, i)}}"
+                         (click)="viewAllImages(content.sharePost)">
+                      <div class="moreImages__txt" *ngIf="i>=4 && content.sharePost.attachments.length>5">
+                        +{{content.sharePost.attachments.length - 4}}
+                      </div>
+                    <img class="o-fit-cover h-100 w-100 {{content.sharePost.attachments.length>5 && i===4?'black-layer':''}}"
+                         [src]="https(img_url.attachment)" >
+                    </div>
+                  </div>
+              </ion-card-content>
+          </ion-card>
+        <ion-card-content class="py-0" *ngIf="content.share_post_id !=-1">
+          <ion-row style="margin-top:6px;">
+            <ion-col size="1" class="p-0"  *ngFor="let like of likes[content.post_id]">
+              <img class="img-like"  [src]="like.profile_picture" *ngIf="like.user != userData.id" [alt]="like.first_name"/>
+            </ion-col>
+            <ion-col style="margin-top:3px">
+              <span class="likes " (click)="likeModal(content.post_id)"> {{content.like_count}} Likes</span>
+              <span class="likes " (click)="reactModal(content.post_id)">
+                        &nbsp;&nbsp;{{ content.comment_count }} Reactions
+                      </span>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+          <hr style="background-color: #cde2de; " />
+        <ion-card-subtitle>
+          <button id="postLikeButton{{content.post_id}}" class="butn2 {{content.likeStatus?'likeActive':''}}" (click)="likePost(content.post_id, 'postLikeButton'+content.post_id, i, content.user_id)">
+            <ion-icon name="thumbs-up"></ion-icon>
+            Like
+          </button>
+          <button (click)="reactModal(content.post_id)" class="butn2" id="react" *ngIf="content.comment_status=='open'">
+            <ion-icon name="create" ></ion-icon> React
+          </button>
+          <button class="butn2 " (click)="sharePost(content.share_post_id==-1?content.post_id:content.sharePost.post_id)">
+            <ion-icon name="share-alt"></ion-icon> Share</button>
+          <span class="time-ago ">{{ timeSince(content.created_date) }}</span>
+        </ion-card-subtitle>
+      </ion-card>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addPost()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    <!-- Skeleton screen -->
+    <div *ngIf="!contents">
+    <ion-card  class="cardchange">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card  class="cardchange">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card  class="cardchange">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card  class="cardchange">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>

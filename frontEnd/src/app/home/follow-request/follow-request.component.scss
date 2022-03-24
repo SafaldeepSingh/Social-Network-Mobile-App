@@ -1,0 +1,76 @@
+.titleText{
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+.titleBack{
+  font-size: 1.4rem;
+}
+.noRequestMsg{
+  text-align: center;
+  margin-top: 5%;
+  font-size: 1.5rem;
+}
+.spinner{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.time{
+  display: block;
+  font-size: .75rem;
+  color: #000000ad;
+  margin-top: 0.5rem;
+}
+.avatar {
+  text-align: -webkit-center;
+  margin-left: 0.25rem;
+}
+.userImg{
+  height: 3rem !important;
+  width:  3rem !important;
+}
+.username__span {
+  font-size: 1.25rem;
+  font-family: "Avenir LT Std 55 Roman", sans-serif;
+}
+.btn1 {
+  border: 0.1rem solid #ffffff;
+  border-radius: 0.4rem;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  text-align: -webkit-center;
+  background-color: #64c9b5;
+  color: #ffffff ;
+  outline: none;
+  height: 2.2rem;
+  width: 4.8rem;
+  /* margin-top: -0.25rem; */
+  font-size: 0.85rem;}
+.btn2 {
+  float: right;
+  border: 0.1rem solid #64c9b5;
+  border-radius: 0.4rem;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  text-align: -webkit-center;
+  background-color: #ffffff;
+  color: #64c9b5 ;
+  outline: none;
+  height: 2.2rem;
+  width: 4.8rem;
+  /* margin-top: -0.25rem; */
+  font-size: 0.85rem;}
+.followActive{
+  color: white!important;
+  background-color: #64c9b5!important;
+  //border: 1px solid white!important;
+}

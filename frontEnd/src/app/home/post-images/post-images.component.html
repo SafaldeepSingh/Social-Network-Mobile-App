@@ -1,0 +1,45 @@
+<ion-content>
+  <ion-card  class="cardchange mt-0">
+    <ion-card-header class="header-content ">
+      <ion-list lines="none " style="padding-bottom :0; padding-top: 0 ">
+        <ion-item>
+          <img class="avatar-photo" [src]="post.userData.profile_picture" />
+          <ion-label  class="card-title ion-margin ">{{ post.userData.first_name+' '+post.userData.last_name}}</ion-label>
+        </ion-item>
+        <hr style="background-color: #cde2de; width: 88%; margin-right: 6%;"/>
+      </ion-list>
+    </ion-card-header>
+    <ion-card-content style="padding-left:18px" class="cardcontent">
+      <b>{{ post.post_title }}</b><br/>
+      {{ post.post_content }}
+      <ion-row style="margin-top:6px;">
+        <ion-col size="1" class="p-0"  *ngFor="let like of getFirst3Likers(post.likes)">
+          <img class="img-like"  [src]="like.profile_picture" *ngIf="like.user != userData.id" [alt]="like.first_name"/>
+        </ion-col>
+        <ion-col style="margin-top:3px">
+          <span class="likes " (click)="likeModal(post.post_id)"> {{post.like_count}} Likes</span>
+          <span class="likes " (click)="reactModal(post.post_id)">
+                        &nbsp;&nbsp;{{ post.comment_count }} Reactions
+                      </span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <hr  style="background-color: #cde2de; ">
+    <ion-card-subtitle>
+      <button id="postLikeButtoni{{post.post_id}}" class="butn2 {{post.likeStatus?'likeActive':''}}" (click)="likePost(post.post_id, 'postLikeButtoni'+post.post_id, post.user_id)">
+        <ion-icon name="thumbs-up"></ion-icon>
+        Like
+      </button>
+      <button (click)="reactModal(post.post_id)" class="butn2" id="react" *ngIf="post.comment_status=='open'">
+        <ion-icon name="create" ></ion-icon> React
+      </button>
+      <button class="butn2 " (click)="sharePost(post.share_post_id==-1?post.post_id:post.sharePost.post_id)">
+        <ion-icon name="share-alt"></ion-icon> Share</button>
+      <span class="time-ago " [innerText]="timeSince(post.created_date)"></span>
+    </ion-card-subtitle>
+  </ion-card>
+  <div *ngFor="let img_url of post.attachments; index as i" class="p-1 o-fit-cover">
+    <img class="o-fit-cover h-100 w-100"
+         [src]="https(img_url.attachment)" alt="">
+  </div>
+</ion-content>

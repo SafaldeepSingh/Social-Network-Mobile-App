@@ -1,0 +1,117 @@
+<ion-content>
+  <div style="margin-left: 35px;
+  margin-top: 40px;
+  margin-right: 35px;
+  font-family:'Avenir LT Std 55 Roman' !important;
+">
+    <ion-label style="font-size: 30px;font-family: 'Avenir LT Std 55 Roman';color: #0f564c;">Register</ion-label>
+    <hr style="background-color: #0f564c;
+    width: 50px;
+    margin-left: 0;
+    margin-top: 5px;" />
+    <p style="   font-size: 15px;
+    font-family: 'Avenir LT Std 55 Roman';color: #0f564c;;
+">
+      Please Log in to your Account to Continue with Sorrow Flush
+    </p>
+    <form style="margin-left:-10px; margin-right:-10px;margin-top: 25px;" [formGroup]="RegisterForm">
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="2">
+              <ion-img class="icon-img" src="assets/icon/user-iocn.png"></ion-img>
+            </ion-col>
+            <ion-col size="10">
+              <ion-input type="text" placeholder="Enter First Name" formControlName="first_name">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="2">
+              <ion-img class="icon-img" src="assets/icon/user-iocn.png"></ion-img>
+            </ion-col>
+            <ion-col size="10">
+              <ion-input type="text" placeholder="Enter Last Name" formControlName="last_name">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="2">
+              <ion-icon style="font-size: 25px;margin-right: 7px;" name="mail">
+              </ion-icon>
+            </ion-col>
+            <ion-col size-xs="10">
+              <ion-input type="email" placeholder="Email Address" formControlName="email">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <ion-card class="card-form">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="2">
+              <ion-img class="icon-img" src="assets/icon/pswd-icon.png">
+              </ion-img>
+            </ion-col>
+            <ion-col size-xs="10">
+              <ion-input type="password" placeholder="Password " formControlName="password">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <p class="p-condition">
+        By creating an account, you agree Terms & Conditions
+      </p>
+      <button fill="solid" class="main-btn" (click)="register()">
+        Sign Up
+      </button>
+
+    </form>
+    <table style="margin-top:25px" width="100%" height="10%">
+      <tr>
+        <td style="text-align: center; vertical-align: middle;color: #0f564c;">
+          Already Have Account ?
+          <span class="span-account" style="color: #0f564c;outline:none" [routerLink]="['/login']">Log In</span
+          >
+        </td>
+      </tr>
+    </table>
+
+    <table style="margin-top: 25px;" width="100%">
+      <tbody>
+      <tr>
+        <td class="td-or1"><hr class="hr-or" style="margin-right:10px" /></td>
+        <td class="td-or2">OR</td>
+        <td class="td-or1"><hr class="hr-or" style="margin-left:10px" /></td>
+      </tr>
+      </tbody>
+    </table>
+    <table height="100%" style="margin-top: 25px;" width="100%">
+      <tbody>
+      <tr>
+        <td width="49%">
+          <img class="imh" src="assets/image/fb-icon.png">
+        </td>
+        <td width="2%"></td>
+        <td width="49%">
+          <img class="imh" src="assets/image/google-icon.png">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
